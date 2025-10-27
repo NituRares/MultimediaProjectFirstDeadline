@@ -1,0 +1,231 @@
+<!-- standard mode and the language we are using -->
+
+<!doctype html>
+<html lang="en">
+
+<!--head + body-->
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Watermark Wizard</title>
+  <link rel="stylesheet" href="styles.css" /> <!--the link for the style.css file-->
+</head>
+<!--the body of the project where we have the header the main and the footer-->
+<body>
+
+    <!--the header of the project => here we put the title of the project and the subtitle which suggests what the user should do-->
+  <header class="site-header">
+    <h1>Watermark Wizard</h1>
+    <p class="subtitle">Add text or image watermarks to your videos</p>
+  </header>
+
+  <!--here starts the main layout-->
+  <main class="layout">
+    <!-- controls -->
+    <aside class="controls" aria-label="Watermark controls"> <!--we have put the inputs on the side to have the visual representation on the other side(selection)-->
+      <form class="form" id="wm-form">
+        <!-- video -->
+        <fieldset class="card"> <!--the first field which allows the user to choose any video-->
+          <legend>1) Source Video</legend> <!--subtitle(legend)-->
+          <div class="field"><!--we add a field for uploafing-->
+            <label for="video-file">Upload video</label> 
+            <input type="file" id="video-file" accept="video/*" /> <!--accepts only videos-->
+          </div>
+            <!--her is the drag and drop-->
+          <div class="dropzone" id="drop-video" aria-label="Drop video here">
+            <span>Drag & drop video here</span>
+          </div>
+        </fieldset>
+
+        <!-- watermark type -->
+        <fieldset class="card">
+          <legend>2) Watermark Type</legend>
+          <div class="field field-inline"> <!--we have two fields one next to the other-->
+            <input type="radio" name="wm-type" id="wm-text-type" value="text" checked />
+            <label for="wm-text-type">Text</label> <!--text option-->
+            <input type="radio" name="wm-type" id="wm-image-type" value="image" />
+            <label for="wm-image-type">Image</label> <!--image option-->
+          </div>
+
+          <!-- text options -->
+           <!--we took each option and add some propreties-->
+          <div class="stack" data-panel="text"> <!--we chose the stack for the text data-panel-->
+            <div class="field">
+              <label for="wm-text">Text</label>
+              <input type="text" id="wm-text" placeholder="YourName" />
+            </div>
+
+            <div class="grid-2"> <!--here we have the font and the weight options-->
+              <div class="field"> <!--font-->
+                <label for="wm-font">Font</label>
+                <select id="wm-font">
+                  <option>Inter</option>
+                  <option>Arial</option>
+                  <option>Georgia</option>
+                  <option>Courier New</option>
+                </select>
+              </div>
+              <div class="field"> <!--weight-->
+                <label for="wm-weight">Weight</label>
+                <select id="wm-weight">
+                  <option value="400">Regular</option>
+                  <option value="600">Semi-bold</option>
+                  <option value="700">Bold</option>
+                </select>
+              </div>
+            </div>
+
+
+            <div class="grid-3"> <!--size + color + outline-->
+              <div class="field"> <!--size-->
+                <label for="wm-size">Size (px)</label>
+                <input type="number" id="wm-size" min="8" max="200" value="24" />
+              </div>
+
+              <div class="field"> <!--color-->
+                <label for="wm-color">Color</label>
+                <input type="color" id="wm-color" value="#ffffff" />
+              </div>
+
+              <div class="field"> <!--outline-->
+                <label for="wm-outline">Outline</label>
+                <select id="wm-outline">
+                  <option value="none">None</option>
+                  <option value="light">Light</option>
+                  <option value="dark">Dark</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- image options -->
+          <div class="stack" data-panel="image">
+            <div class="field">
+              <label for="wm-image">Upload watermark image (PNG recommended)</label>
+              <input type="file" id="wm-image" accept="image/*" />
+            </div>
+
+            <div class="grid-3"> <!--Scale of the image-->
+              <div class="field">
+                <label for="wm-img-scale">Scale (%)</label>
+                <input type="number" id="wm-img-scale" min="5" max="200" value="30" />
+              </div>
+              <div class="field">
+                <label for="wm-img-keep-ratio">Keep ratio</label>
+                <input type="checkbox" id="wm-img-keep-ratio" checked />
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- positioning -->
+        <fieldset class="card">
+          <legend>3) Position & Style</legend>
+
+          <div class="grid-3"> <!--to present the options-->
+            <div class="field"> <!--opacity-->
+              <label for="wm-opacity">Opacity</label>
+              <input type="range" id="wm-opacity" min="0" max="100" value="60" />
+            </div>
+            <div class="field"> <!--rotation-->
+              <label for="wm-rotation">Rotation (°)</label>
+              <input type="number" id="wm-rotation" min="-180" max="180" value="0" />
+            </div>
+            <div class="field"> <!--padding-->
+              <label for="wm-padding">Padding (px)</label>
+              <input type="number" id="wm-padding" min="0" max="200" value="16" />
+            </div>
+          </div>
+
+          <!-- 3x3 position selector -->
+          <div class="pos-grid" role="radiogroup" aria-label="Watermark position">
+            <input type="radio" name="wm-pos" id="pos-1-1" value="top-left" />
+            <label for="pos-1-1" aria-label="Top left"></label>
+
+            <input type="radio" name="wm-pos" id="pos-1-2" value="top-center" />
+            <label for="pos-1-2" aria-label="Top center"></label>
+
+            <input type="radio" name="wm-pos" id="pos-1-3" value="top-right" />
+            <label for="pos-1-3" aria-label="Top right"></label>
+
+            <input type="radio" name="wm-pos" id="pos-2-1" value="middle-left" />
+            <label for="pos-2-1" aria-label="Middle left"></label>
+
+            <input type="radio" name="wm-pos" id="pos-2-2" value="middle-center" checked /> <!--default-->
+            <label for="pos-2-2" aria-label="Middle center"></label>
+
+            <input type="radio" name="wm-pos" id="pos-2-3" value="middle-right" />
+            <label for="pos-2-3" aria-label="Middle right"></label>
+
+            <input type="radio" name="wm-pos" id="pos-3-1" value="bottom-left" />
+            <label for="pos-3-1" aria-label="Bottom left"></label>
+
+            <input type="radio" name="wm-pos" id="pos-3-2" value="bottom-center" />
+            <label for="pos-3-2" aria-label="Bottom center"></label>
+
+            <input type="radio" name="wm-pos" id="pos-3-3" value="bottom-right" />
+            <label for="pos-3-3" aria-label="Bottom right"></label>
+          </div>
+
+        </fieldset>
+
+        <!-- export -->
+        <fieldset class="card">
+          <legend>4) Export</legend>
+          <div class="grid-3">
+            <div class="field"> <!--export format in webm-->
+              <label for="export-format">Format</label>
+              <select id="export-format">
+                <option>WebM</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="export-quality">Quality</label> <!--quality of the video-->
+              <select id="export-quality">
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+            </div>
+            <div class="field"> <!--frames per second-->
+              <label for="export-fps">FPS</label>
+              <input type="number" id="export-fps" min="10" max="60" value="30" />
+            </div>
+          </div>
+
+          <button class="btn btn-primary" id="btn-export" type="button" disabled>
+            Export Watermarked Video
+          </button>
+        </fieldset>
+      </form>
+    </aside>
+
+    <!-- preview -->
+     <!--to have the video options above-->
+    <section class="preview" aria-label="Preview">
+      <div class="player">
+        <video id="video" controls playsinline></video>
+
+        <!--live watermark overlay-->
+        <div class="watermark" id="wm-overlay" aria-hidden="true">
+          <span id="wm-overlay-text">YourName</span>
+          <img id="wm-overlay-img" alt="" hidden />
+        </div>
+
+        <!--safe margins-->
+        <!--this helps the user to have the watermarks on the video-->
+        <div class="safe-guide" aria-hidden="true"></div>
+      </div>
+
+      <p class="hint"> <!--here we added a hint for the user in order to use the watermarks-->
+        Load a video to enable export. The watermark preview appears over the video.
+      </p>
+    </section>
+  </main>
+
+  <!--the footer with the title-->
+  <footer class="site-footer">
+    <small>Multimedia Project Watermark Wizard</small>
+  </footer>
+</body>
+</html>
