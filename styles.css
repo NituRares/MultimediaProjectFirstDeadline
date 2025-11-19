@@ -1,10 +1,9 @@
 /* --- Base / Reset --- */
-*, /*targets every element*/
-*::before, /* includes some elements some components use for the decorations or borders*/
-*::after { box-sizing: border-box; } /*for the width and the height to include also the padding and border*/
+*,
+*::before,
+*::after { box-sizing: border-box; }
 
-
-/*properties we use later*/
+/* Design tokens */
 :root{
   --bg: #0f1115;
   --panel: #171a21;
@@ -19,7 +18,7 @@
   --shadow: 0 10px 25px rgba(0,0,0,.35);
 }
 
-/*sets the page-wide defaults for html and the body*/
+/* Page defaults */
 html, body {
   height: 100%;
   background: radial-gradient(1000px 600px at 10% -10%, #182034 0%, #0f1115 45%, #0b0d12 100%);
@@ -29,31 +28,25 @@ html, body {
   margin: 0;
 }
 
-/*defaults forall img and video*/
+/* Media default */
 img, video { 
-    max-width: 100%; 
-    display: block; 
+  max-width: 100%; 
+  display: block; 
 }
 
-/*spacing for headings*/
-h1, h2, h3, h4 { 
-    margin: 0 0 .25rem;
- }
+/* Type rhythm */
+h1, h2, h3, h4 { margin: 0 0 .25rem; }
+p { margin: .25rem 0 .75rem; }
 
- /*spaccing for p*/
-p { 
-    margin: .25rem 0 .75rem; 
-}
-
-/*styles the labels*/
+/* Labels */
 label {
-     display: block;
-     font-size: .9rem; 
-     color: var(--muted); 
-     margin-bottom: .25rem; 
+  display: block;
+  font-size: .9rem; 
+  color: var(--muted); 
+  margin-bottom: .25rem; 
 }
 
-/*selector list for several inputs*/
+/* Inputs */
 input[type="text"],
 input[type="number"],
 input[type="file"],
@@ -75,70 +68,40 @@ input[type="color"] {
   border-radius: 10px;
   padding: 0;
 }
-
-input[type="range"] {
-     padding: 0;
-}
-
+input[type="range"] { padding: 0; }
 input[type="radio"],
-input[type="checkbox"] { 
-    accent-color: var(--accent); 
-}
+input[type="checkbox"] { accent-color: var(--accent); }
 
-/*Styles the fieldsets*/
+/* Fieldset/legend */
 fieldset {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 1rem;
 }
-
-/*Styles the legends*/
 legend {
   padding: 0 .5rem;
   color: var(--accent-2);
   font-weight: 600;
 }
 
+/* Layout */
+.site-header { padding: 2rem 1.25rem 1.25rem; text-align: center; }
+.site-header .subtitle { color: var(--muted); }
 
-
-/*layout*/
-/*header of the site*/
-.site-header {
-  padding: 2rem 1.25rem 1.25rem;
-  text-align: center;
-}
-
-/*subtitle*/
-.site-header .subtitle { 
-    color: var(--muted);
- }
-
- /*main page layout*/
 .layout {
   display: grid;
   grid-template-columns: 360px 1fr;
   gap: 1.25rem;
   padding: 0 1.25rem 2rem;
 }
-
-/*media query which changes the layout for phones and tabletes*/
 @media (max-width: 980px) {
   .layout { grid-template-columns: 1fr; }
 }
 
-/*styles the controls*/
-.controls {
-     position: relative;
-     }
+.controls { position: relative; }
 
+.form { display: grid; gap: 1rem; }
 
-/*styles the forms*/
-.form {
-     display: grid;
-     gap: 1rem;
-     }
-
-/*styles the cards*/
 .card {
   background: linear-gradient(180deg, var(--panel), var(--panel-2));
   border: 1px solid var(--border);
@@ -146,16 +109,9 @@ legend {
   box-shadow: var(--shadow);
 }
 
-/*styles the fields*/
-.field { 
-    margin-bottom: .75rem; 
-}
-/*removes the bottom margin of the last field*/
-.field:last-child { 
-    margin-bottom: 0; 
-}
+.field { margin-bottom: .75rem; }
+.field:last-child { margin-bottom: 0; }
 
-/*styles the inline form*/
 .field-inline {
   display: grid;
   grid-template-columns: auto 1fr auto 1fr;
@@ -163,20 +119,9 @@ legend {
   gap: .5rem .75rem;
 }
 
-.grid-2 { 
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: .75rem; 
-}
-.grid-3 { 
-    display: grid; 
-    grid-template-columns: 1fr 1fr 1fr; 
-    gap: .75rem; 
-}
-
-.stack { display: grid; 
-    gap: .75rem; 
-}
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: .75rem; }
+.stack  { display: grid; gap: .75rem; }
 
 .dropzone {
   border: 2px dashed var(--border);
@@ -190,20 +135,14 @@ legend {
   );
 }
 
-/*position grid (3x3)*/
+/* 3x3 Position grid */
 .pos-grid {
   margin: .6rem 0 0.8rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: .5rem;
 }
-
-/*hides the radio inputs*/
-.pos-grid input[type="radio"] { 
-    display: none; 
-}
-
-/*styles each square*/
+.pos-grid input[type="radio"] { display: none; }
 .pos-grid label {
   aspect-ratio: 1 / 1;
   border: 1px solid var(--border);
@@ -213,14 +152,12 @@ legend {
   transition: box-shadow .2s ease, transform .08s ease;
   cursor: pointer;
 }
-
-/*styles the selected square*/
 .pos-grid input[type="radio"]:checked + label {
   box-shadow: inset 0 0 0 2px var(--accent);
   transform: translateY(-1px);
 }
 
-/*buttons*/
+/* Buttons */
 .btn {
   display: inline-grid;
   place-items: center;
@@ -233,33 +170,21 @@ legend {
   font-weight: 600;
   transition: transform .08s ease, box-shadow .15s ease;
 }
-
-/*the pressed button becomes visible*/
-.btn:active { 
-    transform: translateY(1px); 
-}
-
-/*styles the primary button*/
+.btn:active { transform: translateY(1px); }
 .btn-primary {
   background: linear-gradient(180deg, var(--accent), #3e7cf1);
   border-color: transparent;
   color: #0b0e16;
   box-shadow: 0 8px 24px rgba(62,124,241,.35);
 }
-
-/*styles the disabled buttons*/
 .btn[disabled] {
   opacity: .5;
   cursor: not-allowed;
   box-shadow: none;
 }
 
-/*preview (player)*/
-
-.preview { 
-    display: grid; 
-    gap: 1rem; 
-}
+/* Preview / player */
+.preview { display: grid; gap: 1rem; }
 
 .player {
   position: relative;
@@ -270,22 +195,16 @@ legend {
   min-height: 320px;
   box-shadow: var(--shadow);
 }
+.player video { width: 100%; height: auto; display: block; background: #000; }
 
-.player video {
-  width: 100%;
-  height: auto;
-  display: block;
-  background: #000;
-}
-
-/*watermark overlay container*/
+/* Watermark overlay */
 .watermark {
   position: absolute;
-  inset: 0;
+  --safe-inset: 6%;
+  inset: var(--safe-inset);
   pointer-events: none;
   display: grid;
-  place-items: center;  /*default center preview look*/
-
+  place-items: center; /* default center preview look */
 }
 
 .watermark span,
@@ -295,7 +214,7 @@ legend {
   user-select: none;
 }
 
-/*default text watermark appearance*/
+/* Default text look */
 #wm-overlay-text {
   font-family: Inter, Arial, sans-serif;
   font-size: 24px;
@@ -310,21 +229,17 @@ legend {
   background: linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.05));
 }
 
-/*optional outlines (toggle by adding .outline-light/.outline-dark)*/
-/*watermark should stay visible on the video*/
+/* Optional outlines */
 .outline-light { text-shadow:
   0 0 2px rgba(255,255,255,.85),
   0 0 8px rgba(255,255,255,.65),
   0 2px 14px rgba(0,0,0,.35); }
-
 .outline-dark { text-shadow:
   0 1px 0 rgba(0,0,0,.9),
   0 0 10px rgba(0,0,0,.55),
   0 0 24px rgba(0,0,0,.45); }
 
-/*tiling mode*/
-/*styles the watermark when the tile mode is active*/
-/*switches the overlay to a block and paints a diagonal repeating pattern*/
+/* Tiling mode */
 .watermark.tile {
   display: block;
   background-image: repeating-linear-gradient(
@@ -341,6 +256,7 @@ legend {
   opacity: .18;
 }
 
+/* Safe guide */
 .safe-guide {
   position: absolute;
   inset: 6%;
@@ -349,14 +265,11 @@ legend {
   pointer-events: none;
 }
 
-/*helpers for visibility for panels*/
-/*hides the text and the image options for the hidden attribute*/
+/* Panel visibility helpers */
 [data-panel="text"][hidden],
-[data-panel="image"][hidden] { 
-    display: none !important; 
-}
+[data-panel="image"][hidden] { display: none !important; }
 
-/*footer*/
+/* Footer */
 .site-footer {
   text-align: center;
   color: var(--muted);
@@ -365,15 +278,11 @@ legend {
   margin-top: 1rem;
 }
 
-/*small hints*/
-.hint { 
-    color: var(--muted); 
-    font-size: .95rem; 
-}
+/* Hint text */
+.hint { color: var(--muted); font-size: .95rem; }
 
-/*accessibility focus*/
-/*customizes the focus when tabbing through tha page*/
+/* Focus ring for accessibility */
 :focus {
-  outline: 2px solid var(--accent);  /*visible focus ring*/
-  outline-offset: 2px; /*small gap*/
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
